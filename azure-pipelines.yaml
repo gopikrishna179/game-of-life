@@ -1,0 +1,20 @@
+--- 
+pool: default 
+
+trigger: 
+  - master 
+stages: 
+  - stage: build 
+    jobs: 
+      - job: gameoflifebuild 
+        steps: 
+          - task: Maven@3 
+            inputs: 
+              mavenPomFile: pom.xml 
+              goals: package 
+              publishJUnitResults: true 
+              testResultsFiles: '**/surefire-reports/TEST-*.xml' 
+              jdkVersionOption: '1.8'  
+
+
+                 
